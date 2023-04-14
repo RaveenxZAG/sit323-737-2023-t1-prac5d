@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    container_name: myweb
+    image: nginx 
+    ports:
+      - "8080:80"
+    networks: 
+      - my-network
+  app:
+    build: .
+    container_name: calculator
+    image: cal
+    ports:
+      - "8081:6379"
+    networks: 
+      - my-network
+networks:
+  my-network:
+    driver: bridge
