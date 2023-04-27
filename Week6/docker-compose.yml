@@ -2,17 +2,19 @@ version: '3'
 services:
   web:
     container_name: myweb
-    image: nginx 
+    image: nginx
     ports:
       - "8080:80"
     networks: 
       - my-network
+    environment:
+      - CALCULATOR_URL=http://calculator:8081
   app:
-    build: .
     container_name: calculator
+    build: .
     image: cal
     ports:
-      - "8081:6379"
+      - "8081:8081"
     networks: 
       - my-network
 networks:
